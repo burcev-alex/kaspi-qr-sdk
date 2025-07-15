@@ -23,9 +23,56 @@ $config = new Config(
     'https://qrapi-cert-ip.kaspi.kz'
 );
 $client = new KaspiQrClient($config);
+```
 
+## Примеры использования методов
+
+### Merchant
+
+```php
 // Создать инвойс
 $invoice = $client->merchant->create('ORDER-123', 1000.0);
+
+// Получить информацию о платеже
+$info = $client->merchant->getPaymentInfo($invoice->getId());
+
+// Отменить инвойс
+$cancel = $client->merchant->cancel($invoice->getId());
+
+// Возврат платежа
+$refund = $client->merchant->refund($invoice->getId(), 500.0);
+```
+
+### Partner
+
+```php
+// Получить список торговых точек
+$tradePoints = $client->partner->tradePoints();
+
+// Зарегистрировать устройство
+$register = $client->partner->register('DEVICE_ID', 123456);
+
+// Удалить устройство
+$client->partner->delete('DEVICE_TOKEN');
+```
+
+### Emulator (только для тестовой среды)
+
+```php
+// Проверка доступности API
+$ping = $client->emulator->ping();
+
+// Эмулировать сканирование QR
+$scan = $client->emulator->scan($invoice->getId());
+
+// Эмулировать подтверждение оплаты
+$confirm = $client->emulator->confirm($invoice->getId());
+
+// Эмулировать ошибку сканирования
+$scanError = $client->emulator->scanError($invoice->getId());
+
+// Эмулировать ошибку подтверждения
+$confirmError = $client->emulator->confirmError($invoice->getId());
 ```
 
 ## Структура
