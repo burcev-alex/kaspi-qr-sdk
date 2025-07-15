@@ -1,0 +1,25 @@
+{
+    "name": "burcev-alex/kaspi-qr-sdk",
+    "description": "PHP SDK for working with Kaspi QR payments",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "KaspiQrSdk\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "monolog/monolog": "^3.9"
+    },
+    "authors": [
+        {
+            "name": "Burtsev Aleksandr",
+            "email": "Alexander.burzev@email.com"
+        }
+    ]
+}

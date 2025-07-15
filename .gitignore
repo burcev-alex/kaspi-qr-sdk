@@ -1,0 +1,25 @@
+# Composer
+/vendor/
+/composer.lock
+
+# PHPUnit
+/phpunit.xml
+/phpunit.xml.dist
+/test-results/
+/coverage/
+
+# IDE
+.idea/
+.vscode/
+.cursor/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Env
+.env 
