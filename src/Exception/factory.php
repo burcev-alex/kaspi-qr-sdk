@@ -5,6 +5,11 @@ namespace KaspiQrSdk\Exception;
 use KaspiQrSdk\Response\ResponseHandler;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Factory class used for creating exceptions based on the response from the ResponseHandler.
+ *
+ * This class processes the status code and the response content to determine the appropriate exception instance to return.
+ */
 final class Factory
 {
     public static function createFromResponse(ResponseHandler $response)

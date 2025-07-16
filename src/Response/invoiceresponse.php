@@ -3,7 +3,11 @@
 namespace KaspiQrSdk\Response;
 
 /**
- * Ответ на создание инвойса (счёта)
+ * Represents a response containing details about an invoice.
+ *
+ * This class is designed to manage and process the response for an invoice, including payment identifiers,
+ * payment methods, and timeout options. It facilitates the creation of instances from raw response data
+ * and provides access to various properties of the invoice response.
  */
 final class InvoiceResponse
 {

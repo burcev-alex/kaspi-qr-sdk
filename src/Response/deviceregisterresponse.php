@@ -3,7 +3,9 @@
 namespace KaspiQrSdk\Response;
 
 /**
- * Ответ на регистрацию устройства
+ * Represents the response received when registering a device.
+ *
+ * This class encapsulates the token information provided in the registration response.
  */
 final class DeviceRegisterResponse
 {

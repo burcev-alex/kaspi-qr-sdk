@@ -27,6 +27,23 @@ $client = new KaspiQrClient($config);
 
 ## Примеры использования методов
 
+### Подключение с сертификатом
+
+```php
+$config = new Config(
+    'ORG_BIN',
+    'DEVICE_TOKEN',
+    KaspiScheme::STRONG,
+    'API_KEY',
+    'https://qrapi-cert-ip.kaspi.kz'
+);
+$config->setCaPath('combined_ca.pem');
+$config->setCertPath('public.cer');
+$config->setKeyPath('private.key');
+$config->setKeyPass('asd123456');
+$client = new KaspiQrClient($config);
+```
+
 ### Merchant
 
 ```php

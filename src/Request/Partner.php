@@ -15,14 +15,10 @@ final class Partner extends AbstractRequest
      * @return array<int, TradePointResponse>
      * @throws \Exception
      */
-    public function tradePoints(): array
+    public function tradePoints(string $companyBin): array
     {
         $url = 'partner/tradepoints';
         if($this->scheme === KaspiScheme::STRONG->value){
-            $companyBin = app('CredentialsDictionary')->getByCode('KASPI_COMPANY_BIN');
-            if(!$companyBin){
-                $companyBin = env('KASPI_COMPANY_BIN');
-            }
             $url .= '/'.$companyBin;
         }
         $httpResponse = $this->makeRequest(
@@ -45,7 +41,14 @@ final class Partner extends AbstractRequest
         return $result;
     }
 
-    public function register(string $deviceId, int $tradePointId): DeviceRegisterResponse
+	/**
+	 * Registers a device with the given identifier and trade point ID.
+	 *
+	 * @param string $deviceId The unique identifier of the device to be registered.
+	 * @param int $tradePointId The ID of the trade point with which the device is associated.
+	 * @return DeviceRegisterResponse The response object containing the registration details.
+	 */
+	public function register(string $deviceId, int $tradePointId): DeviceRegisterResponse
     {
         $data = [
             'DeviceId' => $deviceId,
@@ -71,7 +74,13 @@ final class Partner extends AbstractRequest
         return DeviceRegisterResponse::fromResponse($httpResponse);
     }
 
-    public function delete(string $deviceToken): bool
+	/**
+	 * Deletes a device using the provided device token.
+	 *
+	 * @param string $deviceToken The device token identifying the device to delete.
+	 * @return bool Returns true if the device was successfully deleted.
+	 */
+	public function delete(string $deviceToken): bool
     {
         $data = [
             'DeviceToken' => $deviceToken

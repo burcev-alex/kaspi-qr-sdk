@@ -11,9 +11,22 @@ use KaspiQrSdk\Response\RefundResponse;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 
+/**
+ * The Merchant class handles requests related to QR payments, including the creation
+ * of invoices, retrieval of payment information, cancellation of payments, and processing refunds.
+ * This class extends AbstractRequest and utilizes reusable functionalities for making HTTP requests.
+ */
 final class Merchant extends AbstractRequest
 {
-    public function create(string $accountNumber, float $price, bool $isMobile = false): InvoiceResponse
+	/**
+	 * Creates an invoice request and returns the corresponding response.
+	 *
+	 * @param string $accountNumber The account number associated with the invoice.
+	 * @param float $price The amount for the invoice.
+	 * @param bool $isMobile Indicates whether the request is for a mobile-specific URL. Defaults to false.
+	 * @return InvoiceResponse The response object containing the details of the created invoice.
+	 */
+	public function create(string $accountNumber, float $price, bool $isMobile = false): InvoiceResponse
     {
         $data = [
             'DeviceToken' => $this->getDeviceToken(),
@@ -40,7 +53,13 @@ final class Merchant extends AbstractRequest
         return InvoiceResponse::fromResponse($httpResponse);
     }
 
-    public function getPaymentInfo(string $uuid): PaymentInfoResponse
+	/**
+	 * Retrieves payment information for a given payment identifier.
+	 *
+	 * @param string $uuid The unique identifier of the payment whose details are to be retrieved.
+	 * @return PaymentInfoResponse An object containing the details of the payment.
+	 */
+	public function getPaymentInfo(string $uuid): PaymentInfoResponse
     {
         if($this->debugMode){
             $this->getLogger()->debug("Request (getPaymentInfo)", ['qrPaymentId' => $uuid]);
@@ -61,7 +80,13 @@ final class Merchant extends AbstractRequest
         return new PaymentInfoResponse($httpResponse);
     }
 
-    public function cancel(string $invoiceId): CancelResponse
+	/**
+	 * Cancels a payment associated with the specified invoice identifier.
+	 *
+	 * @param string $invoiceId The unique identifier of the invoice to be canceled.
+	 * @return CancelResponse An object representing the response of the cancel operation.
+	 */
+	public function cancel(string $invoiceId): CancelResponse
     {
         $data = [
             'DeviceToken' => $this->getDeviceToken(),
@@ -87,7 +112,14 @@ final class Merchant extends AbstractRequest
         return CancelResponse::fromResponse($httpResponse);
     }
 
-    public function refund(string $invoiceId, float $price): RefundResponse
+	/**
+	 * Initiates a refund process for a given invoice with a specified amount.
+	 *
+	 * @param string $invoiceId The unique identifier of the invoice to be refunded.
+	 * @param float $price The amount to be refunded for the specified invoice.
+	 * @return RefundResponse An object containing the response of the refund operation.
+	 */
+	public function refund(string $invoiceId, float $price): RefundResponse
     {
         $data = [
             'DeviceToken' => $this->getDeviceToken(),

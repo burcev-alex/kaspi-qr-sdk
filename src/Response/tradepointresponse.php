@@ -3,7 +3,11 @@
 namespace KaspiQrSdk\Response;
 
 /**
- * Ответ с данными торговой точки
+ * Represents a response containing trade point data.
+ *
+ * This class encapsulates the details of a trade point, including its identifier and name.
+ * It provides a constructor for initializing these details and implements a factory method
+ * for creating an instance from a given response data array.
  */
 final class TradePointResponse
 {

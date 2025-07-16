@@ -4,6 +4,10 @@ namespace KaspiQrSdk\Response;
 
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Handles HTTP Response processing and provides utility methods
+ * to retrieve status code and response contents.
+ */
 class ResponseHandler
 {
     const HTTP_INTERNAL_SERVER_ERROR = 500;

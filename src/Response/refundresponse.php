@@ -3,7 +3,10 @@
 namespace KaspiQrSdk\Response;
 
 /**
- * Ответ на возврат платежа
+ * Represents the response of a refund operation.
+ *
+ * This class contains information about the operation ID of a refund process, which is set during instantiation.
+ * It provides functionality to initialize itself from a given response array and retrieve the stored operation ID.
  */
 final class RefundResponse
 {

@@ -3,7 +3,11 @@
 namespace KaspiQrSdk\Response;
 
 /**
- * Ответ с информацией о платеже
+ * Represents a response containing payment information.
+ *
+ * This class provides detailed payment-related data, including status,
+ * transaction ID, product type, and additional optional metadata such
+ * as loan offer, store details, and location information.
  */
 final class PaymentInfoResponse
 {
