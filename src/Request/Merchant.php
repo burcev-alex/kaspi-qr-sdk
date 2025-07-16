@@ -77,7 +77,7 @@ final class Merchant extends AbstractRequest
             $this->getLogger()->debug("Response (getPaymentInfo)", $httpResponse);
         }
 
-        return new PaymentInfoResponse($httpResponse);
+        return PaymentInfoResponse::fromResponse($httpResponse);
     }
 
 	/**
