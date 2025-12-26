@@ -37,7 +37,8 @@ final class KaspiQrClient
 				$config->getCaPath(),
 				$config->getCertPath(),
 				$config->getKeyPath(),
-				$config->getKeyPass()
+				$config->getKeyPass(),
+				$config->isTestMode()
 			)));
 		$this->merchant = new Merchant(
 			$client,
@@ -73,10 +74,10 @@ final class KaspiQrClient
 		];
 	}
 
-	protected function getSslCertificate(?string $caPath, ?string $certPath, ?string $keyPath, ?string $keyPass): array
+	protected function getSslCertificate(?string $caPath, ?string $certPath, ?string $keyPath, ?string $keyPass, bool $testMode = false): array
 	{
 		if ($this->scheme !== KaspiScheme::STRONG->value) {
-			return [];
+			return $testMode ? ['verify' => false] : [];
 		}
 		if (!$caPath || !$certPath || !$keyPath) {
 			throw new \Exception("CA/cert/key path required for STRONG scheme");
@@ -85,7 +86,7 @@ final class KaspiQrClient
 			'timeout' => 10,
 			'cert' => [$certPath, $keyPass],
 			'ssl_key' => [$keyPath, $keyPass],
-			'verify' => $caPath,
+			'verify' => $testMode ? false : $caPath,
 		];
 	}
 

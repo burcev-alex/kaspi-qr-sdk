@@ -19,6 +19,7 @@ class Config
 	private ?string $keyPath = null;
 	private ?string $keyPass = null;
 	private ?LoggerInterface $logger = null;
+	private bool $testMode = false;
 
 	/**
 	 * @param string $organizationBin
@@ -163,5 +164,17 @@ class Config
 	public function setLogger(?LoggerInterface $v): void
 	{
 		$this->logger = $v;
+	}
+
+	/** @return bool */
+	public function isTestMode(): bool
+	{
+		return $this->testMode;
+	}
+
+	/** @param bool $v */
+	public function setTestMode(bool $v): void
+	{
+		$this->testMode = $v;
 	}
 } 

@@ -44,6 +44,20 @@ $config->setKeyPass('asd123456');
 $client = new KaspiQrClient($config);
 ```
 
+### Тестовый режим (отключает валидацию SSL)
+
+```php
+$config = new Config(
+    'ORG_BIN',
+    'DEVICE_TOKEN',
+    KaspiScheme::EASY,
+    'API_KEY',
+    'https://qrapi-cert-ip.kaspi.kz'
+);
+$config->setTestMode(true);
+$client = new KaspiQrClient($config);
+```
+
 ### Merchant
 
 ```php
